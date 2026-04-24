@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: virality-postgres
+    environment:
+      POSTGRES_DB: virality_engine
+      POSTGRES_USER: virality_user
+      POSTGRES_PASSWORD: virality_password
+    command: ["postgres", "-c", "password_encryption=md5"]
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - virality-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: virality-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - virality-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  virality-network:
+    driver: bridge

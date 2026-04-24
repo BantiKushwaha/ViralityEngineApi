@@ -1,0 +1,13 @@
+package com.ViralityEngineApi.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDto {
+    private String userName;
+    private Boolean isPremium = false;
+}
